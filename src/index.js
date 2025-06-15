@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import booksData from "./books.js";
+import logo from "./logo.svg";
 
 function Hello() {
   return (
@@ -10,6 +11,20 @@ function Hello() {
     </div>
   );
 }
+
+function Image(props) {
+  return <img src={props.src} alt="logo" style={{ width: "150px" }} />;
+}
+
+function Header(props) {
+  return (
+    <div className={props.className}>
+      <Image src={logo} />
+      <h1>Книжковий магазин</h1>
+    </div>
+  );
+}
+
 
 class App extends React.Component {
   constructor() {
@@ -22,6 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Header className="header" />
         {this.state.books.map((book) => {
           // console.log(book.id);
           return (
