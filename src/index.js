@@ -34,6 +34,17 @@ class App extends React.Component {
     };
   }
 
+    removeBook = book => {
+    const updateBooks = this.state.books.filter(function(item) {
+      return item.id !== book.id;
+    });
+    console.log(updateBooks);
+    this.setState({
+      books: updateBooks
+    });
+  };
+
+
   render() {
     return (
       <div>
@@ -43,6 +54,7 @@ class App extends React.Component {
           return (
             <div key={book.id}>
               <p>{book.name}</p>
+              <button onClick={this.removeBook.bind(this, book)}>Delete</button>
             </div>
           );
         })}
