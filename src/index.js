@@ -2,15 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import booksData from "./books.js";
 import logo from "./logo.svg";
+import BookItem from "./BookItem.jsx";
 
-function Hello() {
-  return (
-    <div>
-      <h1 style={{ color: "red" }}>Hello, world!</h1>
-      <h2>{booksData[0].name}</h2>
-    </div>
-  );
-}
+// function Hello() {
+//   return (
+//     <div>
+//       <h1 style={{ color: "red" }}>Hello, world!</h1>
+//       <h2>{booksData[0].name}</h2>
+//     </div>
+//   );
+// }
 
 function Image(props) {
   return <img src={props.src} alt="logo" style={{ width: "150px" }} />;
@@ -25,7 +26,6 @@ function Header(props) {
   );
 }
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -34,16 +34,15 @@ class App extends React.Component {
     };
   }
 
-    removeBook = book => {
-    const updateBooks = this.state.books.filter(function(item) {
+  removeBook = (book) => {
+    const updateBooks = this.state.books.filter(function (item) {
       return item.id !== book.id;
     });
     console.log(updateBooks);
     this.setState({
-      books: updateBooks
+      books: updateBooks,
     });
   };
-
 
   render() {
     return (
@@ -53,8 +52,7 @@ class App extends React.Component {
           // console.log(book.id);
           return (
             <div key={book.id}>
-              <p>{book.name}</p>
-              <button onClick={this.removeBook.bind(this, book)}>Delete</button>
+              <BookItem book={book} removeBook={this.removeBook} />
             </div>
           );
         })}
