@@ -3,6 +3,11 @@ import ReactDOM from "react-dom/client";
 import booksData from "./books.js";
 import logo from "./logo.svg";
 import BookItem from "./BookItem.jsx";
+import Image from "./Image.jsx";
+
+
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // function Hello() {
 //   return (
@@ -13,15 +18,15 @@ import BookItem from "./BookItem.jsx";
 //   );
 // }
 
-function Image(props) {
-  return <img src={props.src} alt="logo" style={{ width: "150px" }} />;
-}
+// function Image(props) {
+//   return <img src={props.src} alt="logo" style={{ width: "150px" }} />;
+// }
 
 function Header(props) {
   return (
     <div className={props.className}>
       <Image src={logo} />
-      <h1>Книжковий магазин</h1>
+      <h1  className ="display-1">Книжковий магазин</h1>
     </div>
   );
 }
@@ -46,16 +51,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header className="header" />
+      <div className="container-fluid text-center">
+        <div className="row justify-content-center">
+        <Header className="container-fluid p-5 bg-dark text-primary text-center" />
         {this.state.books.map((book) => {
           // console.log(book.id);
           return (
-            <div key={book.id}>
+            <div  className="col-sm-4 col-12" key={book.id}>
+              <div className="card text-center my-5 p-3">
               <BookItem book={book} removeBook={this.removeBook} />
+              </div>
             </div>
           );
         })}
+        </div>
       </div>
     );
   }
